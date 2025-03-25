@@ -6,3 +6,5 @@ openai-whisper
 soundfile
 langchain
 langchain_openai
+portaudio
+pyaudio
