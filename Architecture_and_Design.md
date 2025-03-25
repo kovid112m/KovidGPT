@@ -6,9 +6,13 @@ Both these work hand in hand in python.
 In this architecture:
 
 The LLM model used is Open AI's GPT 4o.
+
 STT Model used is OpenAI's Whisper Small.
+
 TTS Model used is OpenAI's TTS-1 model.
+
 An LLM prompt is defined in the code to define the behavior of the model.
+
 In this case, the expectation from the model is to answer questions pertaining to Kovid Sharma (myself) as first person perspective.
 
 
