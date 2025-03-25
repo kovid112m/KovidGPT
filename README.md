@@ -4,7 +4,7 @@ A GPT powered bot to tell you all information about me that you wanna know
 The **data folder** is where documents about myself for RAG (retrieval augmentated generation)
 
 
-The script **deploy_bot_app.py** is the main streamlit application that needs to be deployed.
+The script **main.py** is the main streamlit application that needs to be deployed.
 
 **PROGRAMMING LANGUAGE:**
 Python3
