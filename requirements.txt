@@ -8,3 +8,4 @@ langchain
 langchain_openai
 pyaudio
 langchain_community
+pypdf
