@@ -6,17 +6,13 @@ The **data folder** is where documents about myself for RAG (retrieval augmentat
 
 The script **deploy_bot_app.py** is the main streamlit application that needs to be deployed.
 
-
-The **storage folder** contains the vector json files created during the time of indexing the documents from the data folder.
-These files will be created while running the application for the 1st time (stored to disc space).
-
 **PROGRAMMING LANGUAGE:**
 Python3
 
 **PACKAGES TO BE INSTALLED**
 
 Install the packages listed in requirements.txt and packages.txt files before running the streamlit application.
-Kindly Note: PortAudio package needs to be build separately and won't be installed using pip
+Kindly Note: PortAudio package needs to be build separately.
 
 **HOW TO DEPLOY**
 
