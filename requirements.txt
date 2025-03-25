@@ -1,0 +1,8 @@
+streamlit
+sounddevice
+numpy
+openai
+openai-whisper
+soundfile
+langchain
+langchain_openai
