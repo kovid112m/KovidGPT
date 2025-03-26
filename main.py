@@ -6,11 +6,10 @@ import os, openai, soundfile as sf
 #import whisper
 
 # Langchain Imports
-from langchain_core.vectorstores import InMemoryVectorStore
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-#from langchain.vectorstores import Chroma
+from langchain.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
@@ -55,11 +54,10 @@ def load_vector_store():
 
     # Create embeddings and initialize vector store
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=api_key)
-    vector_store = InMemoryVectorStore(embedding=embeddings)
-    #vector_store = Chroma(
-    #    persist_directory="chroma_db_homellc2",
-    #    embedding_function=embeddings
-    #)
+    vector_store = Chroma(
+        persist_directory="chroma_db_homellc2",
+        embedding_function=embeddings
+    )
 
     # Add documents to the vector store (if not already indexed)
     vector_store.add_documents(resume_splits)
