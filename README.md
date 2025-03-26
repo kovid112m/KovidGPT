@@ -24,6 +24,7 @@ This application will run on **http://localhost:8501/**.
 Use the same path or directory where this repository has been cloned for running the streamlit command.
 
 **NOTE : Ensure the above packages have been installed in the path you are going to run this application.**
+**Please follow the instructions in dependencies_how_to file in the repo to install all required packages.**
 
 Command to use:
 
