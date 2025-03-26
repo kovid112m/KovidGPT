@@ -6,6 +6,8 @@ The **data folder** is where documents about myself for RAG (retrieval augmentat
 
 The script **main.py** is the main streamlit application that needs to be deployed.
 
+**IMMPORTANT NOTE:** Kindly input your OpenAI API Key in the code before running the streamlit app :)
+
 **PROGRAMMING LANGUAGE:**
 Python3
 
