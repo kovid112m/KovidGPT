@@ -5,7 +5,7 @@ Both these work hand in hand in python.
 
 In this architecture:
 
-<img width="986" alt="Architecture" src="https://github.com/user-attachments/assets/8ce8379f-b9ec-4b89-bacf-431f8b7add28" />
+<img width="935" alt="Architecture" src="https://github.com/user-attachments/assets/ab8e8aa9-e63c-470d-903b-0d1133ba16e9" />
 
 
 The LLM model used is Open AI's GPT 4o.
