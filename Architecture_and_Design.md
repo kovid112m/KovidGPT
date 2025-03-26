@@ -1,6 +1,6 @@
 This architecture is integrated by using LangChain as the framework for constructing the chat engine in the backend,
 and STREAMLIT for the frontend UI where users can interact with the chatbot.
-Both these work hand in hand in python.
+Both these work hand in hand in python..
 
 
 In this architecture:
