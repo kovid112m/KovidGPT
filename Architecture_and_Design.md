@@ -25,7 +25,7 @@ In this case, the expectation from the model is to answer questions pertaining t
 The Retrieval Model performs RAG using **LANGCHAIN** as a framework.
 The steps involved in this process is 
 1. Data Ingestion using PyPDFLoaders.
-2. Indexing the documents using OpenAI's "text-embedding-3-large" model.
+2. Embedding the documents using OpenAI's "text-embedding-3-large" model.
 3. Storing the indices on to ChromaDB for fast retrieval.
 4. Querying on the indices to fetch relevant information.
 6. Pass the user query + retrieved information to the prompt engineered LLM model.
