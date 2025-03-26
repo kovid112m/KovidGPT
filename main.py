@@ -14,6 +14,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
+os.environ["PA_ALSA_PLUGHW"] = "1"
+
 # Your API key for OpenAI
 api_key = st.secrets["api_key"]
 openai.api_key = api_key
