@@ -15,7 +15,7 @@ Python3
 
 Install the packages listed in requirements.txt and packages.txt files before running the streamlit application.
 
-Kindly Note: PortAudio package needs to be build separately.
+**Kindly Note:** PortAudio package needs to be build separately.
 
 **HOW TO DEPLOY**
 
