@@ -2,8 +2,7 @@
 import streamlit as st
 import sounddevice as sd
 import numpy as np
-import os, openai, soundfile as sf
-#import whisper
+import os, openai, whisper, soundfile as sf, io
 
 # Langchain Imports
 from langchain.document_loaders import PyPDFLoader
@@ -13,16 +12,11 @@ from langchain.vectorstores import Chroma
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
-os.environ["PA_ALSA_PLUGHW"] = "1"
-
 # Your API key for OpenAI
-api_key = st.secrets["api_key"]
+api_key = "YOUR_OPEN_API_KEY_HERE"
 openai.api_key = api_key
 
-# Load the Whisper model
-#stt_model = whisper.load_model("small.en")
-
-# Set Streamlit page config
+# Setting the Streamlit page configuration
 st.set_page_config(
     page_title="Hello and Welcome...",
     page_icon="🙂",
@@ -33,7 +27,7 @@ st.set_page_config(
 
 def load_vector_store():
     path = "data/"
-    # Load PDFs
+    # Loading the PDFs
     resume_loader = PyPDFLoader(os.path.join(path, "Kovid_Sharma_Resume.pdf"))
     linkedin_loader = PyPDFLoader(os.path.join(path, "Linkedin_Profile.pdf"))
     about_loader = PyPDFLoader(os.path.join(path, "About_Me.pdf"))
@@ -54,6 +48,7 @@ def load_vector_store():
 
     # Create embeddings and initialize vector store
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=api_key)
+    
     vector_store = Chroma(
         persist_directory="chroma_db_homellc2",
         embedding_function=embeddings
@@ -80,7 +75,7 @@ def initialize_chat_agent():
                     Context:
                     {retrieved_data}"""
     )
-    # llm_chain = LLMChain(llm=my_llm, prompt=prompt)
+    
     llm_chain = prompt | my_llm
     
     return llm_chain
@@ -93,7 +88,7 @@ def record_audio(duration=7, samplerate=16000):
     audio_ndarray = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1, dtype=np.float32)
     sd.wait()
     
-    return audio_ndarray
+    sf.write("question.wav", audio_ndarray, samplerate=samplerate, format="wav")
 
 def transcribe_audio():
     st.write("Transcribing audio...")
@@ -108,6 +103,7 @@ def transcribe_audio():
 
     st.write("Transcription complete!")
     return response
+
 
 def chat_with_gpt(query: str):
     llm_chain = st.session_state.get("chat_agent")
@@ -134,7 +130,7 @@ def text_to_speech_openai(text):
         
         data, samplerate = sf.read("output2.wav")
         sd.play(data, samplerate)
-        sd.wait()                
+        sd.wait()
         return "done"
     except Exception as e:
         st.error(f"Error: {e}")
@@ -161,15 +157,14 @@ st.info("Chat with me, to know more about my life")
 st.info("Recording Limit: 7 seconds")
 
 if st.button("Record & Ask"):
-    audio_array = record_audio(duration=7)
-    # st.audio(audio_array.flatten(), format="audio/wav", sample_rate=16000)
-
+    record_audio(duration=7)
+    
     # Transcribe speech to text
-    text = transcribe_audio(audio_array)
+    text = transcribe_audio()
     st.write("**You said:**", text)
     
-    # Get AI response using the agent (agent.run is used)
-    ai_response = chat_with_gpt(text) # type: ignore
+    # Getting response using the LLM chain we created above
+    ai_response = chat_with_gpt(text)
     st.write("**Chatbot:**", ai_response)
     
     st.success("Hold on a second, converting to audio...")
