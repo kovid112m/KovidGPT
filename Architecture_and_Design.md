@@ -5,14 +5,16 @@ Both these work hand in hand in python.
 
 In this architecture:
 
-<img width="1065" alt="Screenshot 2025-03-26 at 3 06 20 AM" src="https://github.com/user-attachments/assets/c616fcc8-cfd8-4cc4-8241-f9c6e1f984e1" />
+<img width="986" alt="Architecture" src="https://github.com/user-attachments/assets/8ce8379f-b9ec-4b89-bacf-431f8b7add28" />
 
 
 The LLM model used is Open AI's GPT 4o.
 
-STT Model used is OpenAI's Whisper Small.
+STT Model used is OpenAI's GPT-4o-mini-transcribe.
 
 TTS Model used is OpenAI's TTS-1 model.
+
+ChromaDB to store the vector embeddings for the PDF files and to create a retriever.
 
 An LLM prompt is defined in the code to define the behavior of the model.
 
