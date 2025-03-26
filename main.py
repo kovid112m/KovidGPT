@@ -2,9 +2,8 @@
 import streamlit as st
 import sounddevice as sd
 import numpy as np
-import os, openai, whisper, soundfile as sf
-import openai
-import whisper
+import os, openai, soundfile as sf
+#import whisper
 
 # Langchain Imports
 from langchain_core.vectorstores import InMemoryVectorStore
@@ -20,7 +19,7 @@ api_key = st.secrets["api_key"]
 openai.api_key = api_key
 
 # Load the Whisper model
-stt_model = whisper.load_model("small.en")
+#stt_model = whisper.load_model("small.en")
 
 # Set Streamlit page config
 st.set_page_config(
@@ -96,13 +95,19 @@ def record_audio(duration=7, samplerate=16000):
     
     return audio_ndarray
 
-def transcribe_audio(audio_array):
+def transcribe_audio():
     st.write("Transcribing audio...")
-    result = whisper.transcribe(stt_model, audio_array.flatten())
+        # Send to OpenAI Whisper API
+        
+    audio_file= open("question.wav", "rb")
+    response = openai.audio.transcriptions.create(
+        model="gpt-4o-mini-transcribe",
+        file=audio_file,
+        response_format="text"
+    )
+
     st.write("Transcription complete!")
-    return result["text"]
-
-
+    return response
 
 def chat_with_gpt(query: str):
     llm_chain = st.session_state.get("chat_agent")
